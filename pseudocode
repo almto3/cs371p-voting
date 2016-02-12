@@ -1,4 +1,9 @@
-d()
+struct
+  n = number of candidates
+  array[n] of names of candidates
+  array[m][n] of ballots 
+
+read()
   input is std input format
   output is pointer array of structs
 
@@ -9,10 +14,6 @@ eval()
 solve()
   input is std input
 
-struct
-  n = number of candidates
-  array[n] of names of candidates
-  array[m][n] of ballots 
 
 maybe printing helper
 
@@ -21,14 +22,6 @@ read ()
   output array of structs with number of cases, 
   array of candidates, array of ballots
 
-solve (r, w)
-  get the number of cases
-
-  read() to parse data return array
-  for every struct in array
-    call eval
-    output winner(s)
-  
 eval ( struct pointer)
   vote_array[n] number of each candidates votes
   still_in_the_race[n]  
@@ -39,6 +32,14 @@ eval ( struct pointer)
     while( !still_in_the_race[ballot_array[i][j]] ) j++
     vote_array[ballot_array[i][j]]++
     eliminate
+
+solve (r, w)
+  get the number of cases
+
+  read() to parse data return array
+  for every struct in array
+    eval()
+    output winner(s)
   
 
 
