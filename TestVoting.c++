@@ -33,6 +33,11 @@ TEST(VotingFixture, read_2) {
     Ballots *p = voting_read(s);
     ASSERT_EQ( sizeof(p), 2); 
 
+TEST(VotingFixture, read_3) {
+    string s("1\n\n1\nJohn Doe\n1\n1\n1\n");
+    Ballots *p = voting_read(s);
+    ASSERT_EQ( sizeof(p), 1); 
+
 // ----
 // eval
 // ----
@@ -48,6 +53,18 @@ TEST(CollatzFixture, eval_1) {
 
 TEST(CollatzFixture, solve_1) {
     istringstream r("1\n\n2\nJohn Doe\nJane Doe\n1 2\n 1 2\n2 1\n");
+    ostringstream w;
+    voting_solve(r, w);
+    ASSERT_EQ("John Doe\n", w.str());}
+
+T(CollatzFixture, solve_2) {
+    istringstream r("2\n\n2\nJohn Doe\nJane Doe\n1 2\n 1 2\n2 1\n\n3\nJohn Doe\nJane Smith\nSirhan Sirhan\n1 2 3\n 2 1 3\n2 3 1\n1 2 3\n3 1 2\n");
+    ostringstream w;
+    voting_solve(r, w);
+    ASSERT_EQ("John Doe\n\nJohn Doe", w.str());}
+
+TEST(CollatzFixture, solve_1) {
+    istringstream r("1\n\n1\nJohn Doe\n1\n1\n1\n");
     ostringstream w;
     voting_solve(r, w);
     ASSERT_EQ("John Doe\n", w.str());}
