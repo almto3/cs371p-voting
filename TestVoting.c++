@@ -42,32 +42,36 @@ TEST(VotingFixture, read_3) {
 // eval
 // ----
 
-TEST(CollatzFixture, eval_1) {
+TEST(VotingFixture, eval_1) {
     const int v = voting_eval(1, 10);
     ASSERT_EQ(20, v);}
-    ASSERT_EQ("1 10 20\n", w.str());}
+    ASSERT_EQ("1 10 20\n", w.str());
+}
 
 // -----
 // solve
 // -----
 
-TEST(CollatzFixture, solve_1) {
+TEST(VotingFixture, solve_1) {
     istringstream r("1\n\n2\nJohn Doe\nJane Doe\n1 2\n 1 2\n2 1\n");
     ostringstream w;
     voting_solve(r, w);
-    ASSERT_EQ("John Doe\n", w.str());}
+    ASSERT_EQ("John Doe\n", w.str());
+}
 
-T(CollatzFixture, solve_2) {
+T(VotingFixture, solve_2) {
     istringstream r("2\n\n2\nJohn Doe\nJane Doe\n1 2\n 1 2\n2 1\n\n3\nJohn Doe\nJane Smith\nSirhan Sirhan\n1 2 3\n 2 1 3\n2 3 1\n1 2 3\n3 1 2\n");
     ostringstream w;
     voting_solve(r, w);
-    ASSERT_EQ("John Doe\n\nJohn Doe", w.str());}
+    ASSERT_EQ("John Doe\n\nJohn Doe", w.str());
+}
 
-TEST(CollatzFixture, solve_1) {
+TEST(VotingFixture, solve_3) {
     istringstream r("1\n\n1\nJohn Doe\n1\n1\n1\n");
     ostringstream w;
     voting_solve(r, w);
-    ASSERT_EQ("John Doe\n", w.str());}
+    ASSERT_EQ("John Doe\n", w.str());
+}
 
 /*
 % g++ -fprofile-arcs -ftest-coverage -pedantic -std=c++11 -Wall Collatz.c++ TestCollatz.c++ -o TestCollatz -lgtest -lgtest_main -lpthread
