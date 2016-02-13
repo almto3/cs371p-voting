@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <cstring>
+#include <vector>
 
 #include "Voting.h"
 
@@ -69,8 +70,56 @@ Case* voting_read (istream& r)
 // ------------
 // voting_eval
 // ------------
-int voting_eval (Case& c)
+vector<int> voting_eval (Case& c)
 {
+
+  vector<int> out_of_the_race(c.n);
+  int vote_array[c.n];
+  int i, j, max, min;
+
+  while ( true )
+  {
+    for ( i = 0; i < c.n; i++) vote_array[i] = 0;
+
+    for ( i = 0; i < c.b; ++i )
+    {
+      j = 0;
+      while ( out_of_the_race[ c.ballots[i][j] - 1 ] ) ++j;
+      vote_array[ c.ballots[i][j] - 1 ]++;
+    }
+
+    max = 0;
+    min = 10000;
+    for ( j = 0; j < c.n; ++j)
+    {
+      if ( vote_array[ j ] > max ) max = vote_array[ j ];
+      if ( !out_of_the_race[ j ] && vote_array[ j ] < min ) min = vote_array[ j ];
+    }
+
+    if( max * 2 > c.b)
+    {
+      for ( j = 0; j < c.n; ++j )
+      {
+        if ( vote_array[ j ] < max ) out_of_the_race[ j ] = 1;
+      }
+      return out_of_the_race;
+    }
+
+    if( min == max )
+    {
+      for ( j = 0; j < c.n; ++j )
+      {
+        if ( vote_array[ j ] != max ) out_of_the_race[ j ] = 1;
+      }
+      return out_of_the_race;
+    }
+
+    for ( j = 0; j < c.n; ++j )
+    {
+      if ( vote_array[ j ] == min ) out_of_the_race[ j ] = 1;
+    }
+
+  }
 
 }
 
@@ -109,9 +158,17 @@ void voting_print (Case& c)
 void voting_solve (istream& r, ostream& w)
 {
   Case * Cases = voting_read( r );
+  
+  vector<int> results;
 
-  voting_print(Cases[1]);
-
-
+  for ( int i = 0; i < num_cases; ++i)
+  {
+    results = voting_eval( Cases[i] );
+    for ( int j = 0; j < Cases[i].n; ++j)
+    {
+      if( !results[j])
+        printf("%s\n", Cases[i].names[j]);
+    }
+  }
 
 }

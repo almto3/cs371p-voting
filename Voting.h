@@ -11,6 +11,7 @@ const int MAX_BALLOTS = 1000;
 
 #include <iostream> // istream, ostream
 #include <string>   // string
+#include <vector>
 
 using namespace std;
 
@@ -46,7 +47,7 @@ Case* voting_read (istream& r);
  * @c is is the instance of the struct Case
  * @returns the winner id in the array of candidates
  */
-int voting_eval (Case& c);
+vector<int> voting_eval (Case& c);
 
 // -------------
 // voting_print
