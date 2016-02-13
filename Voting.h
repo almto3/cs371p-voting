@@ -23,8 +23,9 @@ using namespace std;
 
 struct Case {
 	int n; 												//number of candidates
-	string names [MAX_CANDIDATES]; 						//names of candidates
-	char ballots [MAX_BALLOTS][MAX_CANDIDATES]; 		//the ballots
+  int b;                        //number of ballots
+	char names [MAX_CANDIDATES][80]; 						//names of candidates
+	int ballots [MAX_BALLOTS][MAX_CANDIDATES]; 		//the ballots
 };
 
 // ------------
