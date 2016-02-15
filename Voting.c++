@@ -19,7 +19,7 @@ int num_cases;
 // ------------
 // voting_read
 // ------------
-Case* voting_read (istream& r)
+vector<Case> voting_read (istream& r)
 {
   int cur_candidate, num_candidates, cur_voter, voter_candidate, cur_election, num_ballots;
   string s, b;
@@ -27,7 +27,7 @@ Case* voting_read (istream& r)
   getline( r, s);
   num_cases = stoi( s, nullptr);
 
-  Case elections[ num_cases ];
+  vector<Case> elections( num_cases );
   
   getline( r, s); // Skipping blank line
 
@@ -50,9 +50,10 @@ Case* voting_read (istream& r)
 
       ballot_line<<s;
       voter_candidate = 0;
+      elections[ cur_election ].ballots[cur_voter].resize(num_candidates);
       while( getline( ballot_line, b, ' '))
       {
-        elections[ cur_election ].ballots[cur_voter][voter_candidate] = stoi(b, nullptr);
+        elections[ cur_election ].ballots[cur_voter][voter_candidate] = stoi( b, nullptr);
         voter_candidate++;
       }
       ballot_line.str("");
@@ -60,6 +61,9 @@ Case* voting_read (istream& r)
       cur_voter++;
     }
     elections[ cur_election ].b = cur_voter;
+
+    voting_print(elections[ cur_election ]);
+
     
   }
 
@@ -157,7 +161,8 @@ void voting_print (Case& c)
 // -------------
 void voting_solve (istream& r, ostream& w)
 {
-  Case * Cases = voting_read( r );
+  vector<Case> Cases= voting_read( r );
+  voting_print(Cases[2]);
   
   vector<int> results;
 

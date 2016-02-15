@@ -26,7 +26,7 @@ struct Case {
 	int n; 												//number of candidates
   int b;                        //number of ballots
 	char names [MAX_CANDIDATES][80]; 						//names of candidates
-	int ballots [MAX_BALLOTS][MAX_CANDIDATES]; 		//the ballots
+	vector<int> ballots [MAX_BALLOTS]; 		//the ballots
 };
 
 // ------------
@@ -38,7 +38,7 @@ struct Case {
  * @returns a pointer array of struct Case
  */
 
-Case* voting_read (istream& r);		
+vector<Case> voting_read (istream& r);		
 
 // ------------
 // voting_eval
