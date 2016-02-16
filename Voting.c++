@@ -21,7 +21,7 @@ int num_cases;
 // ------------
 vector<Case> voting_read (istream& r)
 {
-  int cur_candidate, num_candidates, cur_voter, voter_candidate, cur_election, num_ballots;
+  int cur_candidate, num_candidates, cur_voter, voter_candidate, cur_election;
   string s, b;
   stringstream ballot_line;
   getline( r, s);
@@ -61,10 +61,6 @@ vector<Case> voting_read (istream& r)
       cur_voter++;
     }
     elections[ cur_election ].b = cur_voter;
-
-    voting_print(elections[ cur_election ]);
-
-    
   }
 
   return elections;
@@ -162,7 +158,6 @@ void voting_print (Case& c)
 void voting_solve (istream& r, ostream& w)
 {
   vector<Case> Cases= voting_read( r );
-  voting_print(Cases[2]);
   
   vector<int> results;
 
@@ -174,6 +169,7 @@ void voting_solve (istream& r, ostream& w)
       if( !results[j])
         printf("%s\n", Cases[i].names[j]);
     }
+    if(i < num_cases-1) printf("\n");
   }
 
 }
