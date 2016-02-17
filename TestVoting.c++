@@ -19,54 +19,90 @@ using namespace std;
 // TestVoting
 // -----------
 
-// ----
-// read
-// ----
-
-TEST(VotingFixture, read_1) {
-    string s("1\n\n2\nJohn Doe\nJane Doe\n1 2\n 1 2\n2 1\n");
-    Ballots *p = voting_read(s);
-    ASSERT_EQ( sizeof(p), 1);
-
-TEST(VotingFixture, read_2) {
-    string s("2\n\n2\nJohn Doe\nJane Doe\n1 2\n 1 2\n2 1\n\n3\nJohn Doe\nJane Smith\nSirhan Sirhan\n1 2 3\n 2 1 3\n2 3 1\n1 2 3\n3 1 2\n");
-    Ballots *p = voting_read(s);
-    ASSERT_EQ( sizeof(p), 2); 
-
-TEST(VotingFixture, read_3) {
-    string s("1\n\n1\nJohn Doe\n1\n1\n1\n");
-    Ballots *p = voting_read(s);
-    ASSERT_EQ( sizeof(p), 1); 
-
-// ----
-// eval
-// ----
-
-TEST(VotingFixture, eval_1) {
-    const int v = voting_eval(1, 10);
-    ASSERT_EQ(20, v);}
-    ASSERT_EQ("1 10 20\n", w.str());
+// -----------
+// voting_read
+// -----------
+TEST(VotingFixture, read_1)
+{
+    istringstream s("1\n\n2\nJohn Doe\nJane Doe\n1 2\n1 2\n2 1\n");
+    vector<Case> p = voting_read(s);
+    ASSERT_EQ( p[0].n, 2);
+    ASSERT_EQ( p[0].b, 3);
+    ASSERT_EQ( p[0].names[0], "John Doe");
+    ASSERT_EQ( p[0].ballots[1][0], 1);
 }
 
-// -----
-// solve
-// -----
+TEST(VotingFixture, read_2)
+{
+    istringstream s("2\n\n2\nJohn Doe\nJane Doe\n1 2\n1 2\n2 1\n\n3\nJohn Doe\nJane Smith\nSirhan Sirhan\n1 2 3\n2 1 3\n2 3 1\n1 2 3\n3 1 2\n");
+    vector<Case> p = voting_read(s);
+    ASSERT_EQ( p[1].n, 3); 
+    ASSERT_EQ( p[0].b, 3); 
+    ASSERT_EQ( p[1].names[2], "Sirhan Sirhan"); 
+    ASSERT_EQ( p[1].ballots[3][2], 3);
+}
 
-TEST(VotingFixture, solve_1) {
-    istringstream r("1\n\n2\nJohn Doe\nJane Doe\n1 2\n 1 2\n2 1\n");
+TEST(VotingFixture, read_3)
+{
+    istringstream s("1\n\n1\nJohn Doe\n1\n1\n1\n");
+    vector<Case> p = voting_read(s);
+    ASSERT_EQ( p[0].n, 1); 
+    ASSERT_EQ( p[0].b, 3); 
+    ASSERT_EQ( p[0].names[0], "John Doe"); 
+    ASSERT_EQ( p[0].ballots[0][0], 1);
+}
+
+// -----------
+// voting_eval
+// -----------
+TEST(VotingFixture, eval_1) 
+{
+    istringstream s("1\n\n2\nJohn Doe\nJane Doe\n1 2\n1 2\n2 1\n");
+    vector<Case> p = voting_read(s);
+    vector<int> results = voting_eval( p[0] );
+    ASSERT_EQ( results[0], 0 );
+    ASSERT_EQ( results[1], 1 );
+}
+
+TEST(VotingFixture, eval_2) 
+{
+    istringstream s("2\n\n2\nJohn Doe\nJane Doe\n1 2\n1 2\n2 1\n\n3\nJohn Doe\nJane Smith\nSirhan Sirhan\n1 2 3\n2 1 3\n2 3 1\n1 2 3\n3 1 2\n");
+    vector<Case> p = voting_read(s);
+    vector<int> results = voting_eval( p[1] );
+    ASSERT_EQ( results[0], 0 );
+    ASSERT_EQ( results[1], 1 );
+    ASSERT_EQ( results[2], 1 );
+}
+
+TEST(VotingFixture, eval_3) 
+{
+    istringstream s("1\n\n1\nJohn Doe\n1\n1\n1\n");
+    vector<Case> p = voting_read(s);
+    vector<int> results = voting_eval( p[0] );
+    ASSERT_EQ( results[0], 0 );
+}
+
+// ------------
+// voting_solve
+// ------------
+TEST(VotingFixture, solve_1) 
+{
+    istringstream r("1\n\n2\nJohn Doe\nJane Doe\n1 2\n1 2\n2 1\n");
     ostringstream w;
     voting_solve(r, w);
     ASSERT_EQ("John Doe\n", w.str());
 }
 
-T(VotingFixture, solve_2) {
-    istringstream r("2\n\n2\nJohn Doe\nJane Doe\n1 2\n 1 2\n2 1\n\n3\nJohn Doe\nJane Smith\nSirhan Sirhan\n1 2 3\n 2 1 3\n2 3 1\n1 2 3\n3 1 2\n");
+TEST(VotingFixture, solve_2) 
+{
+    istringstream r("2\n\n2\nJohn Doe\nJane Doe\n1 2\n1 2\n2 1\n\n3\nJohn Doe\nJane Smith\nSirhan Sirhan\n1 2 3\n2 1 3\n2 3 1\n1 2 3\n3 1 2\n");
     ostringstream w;
     voting_solve(r, w);
-    ASSERT_EQ("John Doe\n\nJohn Doe", w.str());
+    ASSERT_EQ("John Doe\n\nJohn Doe\n", w.str());
 }
 
-TEST(VotingFixture, solve_3) {
+TEST(VotingFixture, solve_3) 
+{
     istringstream r("1\n\n1\nJohn Doe\n1\n1\n1\n");
     ostringstream w;
     voting_solve(r, w);

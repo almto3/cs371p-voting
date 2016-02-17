@@ -25,7 +25,7 @@ using namespace std;
 struct Case {
 	int n; 												//number of candidates
   int b;                        //number of ballots
-	char names [MAX_CANDIDATES][80]; 						//names of candidates
+	vector<string> names; 						//names of candidates
 	vector<int> ballots [MAX_BALLOTS]; 		//the ballots
 };
 

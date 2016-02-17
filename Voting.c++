@@ -36,11 +36,12 @@ vector<Case> voting_read (istream& r)
     getline( r, s);
     num_candidates = stoi( s, nullptr);
     elections[ cur_election ].n = num_candidates;
+    elections[ cur_election ].names.resize( num_candidates );
 
     for ( cur_candidate = 0; cur_candidate < num_candidates; cur_candidate++ )
     {
       getline( r, s);
-      strncpy(elections[ cur_election ].names[ cur_candidate ], s.c_str(), 80);
+      elections[ cur_election ].names[cur_candidate] = s;
     }
 
     cur_voter = 0;
@@ -134,7 +135,7 @@ void voting_print (Case& c)
 
   for( int i = 0; i < c.n; i++)
   {
-    printf("%s\n", c.names[i]);
+//    printf("%s\n", c.names[i]);
   }
 
   for( int i = 0; i < c.b; i++)
@@ -167,9 +168,10 @@ void voting_solve (istream& r, ostream& w)
     for ( int j = 0; j < Cases[i].n; ++j)
     {
       if( !results[j])
-        printf("%s\n", Cases[i].names[j]);
+        w << Cases[i].names[j] << endl;
+        //printf("%s\n", Cases[i].names[j]);
     }
-    if(i < num_cases-1) printf("\n");
+    if(i < num_cases-1) w << endl;
   }
 
 }
