@@ -45,18 +45,22 @@ vector<Case> voting_read (istream& r)
     }
 
     cur_voter = 0;
+    //elections[ cur_election ].ballots.resize(1000);
 
     while ( getline( r, s) && !s.empty() )
     {
 
       ballot_line<<s;
       voter_candidate = 0;
-      elections[ cur_election ].ballots[cur_voter].resize(num_candidates);
+      vector<int> r;
+      //elections[ cur_election ].ballots[cur_voter].resize(num_candidates);
       while( getline( ballot_line, b, ' '))
       {
-        elections[ cur_election ].ballots[cur_voter][voter_candidate] = stoi( b, nullptr);
+        r.push_back(stoi( b, nullptr));
+        //elections[ cur_election ].ballots[cur_voter].push_back(stoi( b, nullptr));
         voter_candidate++;
       }
+      elections[ cur_election ].ballots.push_back(r);
       ballot_line.str("");
       ballot_line.clear();
       cur_voter++;
@@ -73,8 +77,8 @@ vector<Case> voting_read (istream& r)
 // ------------
 vector<int> voting_eval (Case& c)
 {
-
   vector<int> out_of_the_race(c.n);
+  vector<vector<int>> voter_list[c.n];
   int vote_array[c.n];
   int i, j, max, min;
 
@@ -82,26 +86,30 @@ vector<int> voting_eval (Case& c)
   {
     for ( i = 0; i < c.n; i++) vote_array[i] = 0;
 
-    for ( i = 0; i < c.b; ++i )
+    //for ( i = 0; i < c.ballots.size(); ++i )
+    while(c.ballots.size())
     {
       j = 0;
-      while ( out_of_the_race[ c.ballots[i][j] - 1 ] ) ++j;
-      vote_array[ c.ballots[i][j] - 1 ]++;
+  //    printf("Size: %d Ballots: %d values: %d\n", out_of_the_race.size(), c.ballots.size(), c.ballots.at(0).at(j)-1);
+      while ( out_of_the_race[ c.ballots.at(0).at(j) - 1 ] ) ++j;
+      voter_list[ c.ballots.at(0).at(j) - 1 ].push_back(c.ballots.at(0) );
+      c.ballots.erase( c.ballots.begin() );
     }
 
     max = 0;
     min = 10000;
     for ( j = 0; j < c.n; ++j)
     {
-      if ( vote_array[ j ] > max ) max = vote_array[ j ];
-      if ( !out_of_the_race[ j ] && vote_array[ j ] < min ) min = vote_array[ j ];
+//    printf("Vote_size: %d %d\n", j, voter_list[j].size());
+      if ( voter_list[j].size() > max ) max = voter_list[j].size();
+      if ( !out_of_the_race[ j ] && voter_list[j].size() < min ) min = voter_list[j].size();
     }
 
     if( max * 2 > c.b)
     {
       for ( j = 0; j < c.n; ++j )
       {
-        if ( vote_array[ j ] < max ) out_of_the_race[ j ] = 1;
+        if ( voter_list[j].size() < max ) out_of_the_race[ j ] = 1;
       }
       return out_of_the_race;
     }
@@ -110,14 +118,18 @@ vector<int> voting_eval (Case& c)
     {
       for ( j = 0; j < c.n; ++j )
       {
-        if ( vote_array[ j ] != max ) out_of_the_race[ j ] = 1;
+        if ( voter_list[j].size() != max ) out_of_the_race[ j ] = 1;
       }
       return out_of_the_race;
     }
 
     for ( j = 0; j < c.n; ++j )
     {
-      if ( vote_array[ j ] == min ) out_of_the_race[ j ] = 1;
+      if ( voter_list[j].size() == min )
+      {
+        out_of_the_race[ j ] = 1;
+        c.ballots.insert( c.ballots.end(), voter_list[j].begin(), voter_list[j].end() );
+      }
     }
 
   }
@@ -159,7 +171,7 @@ void voting_print (Case& c)
 void voting_solve (istream& r, ostream& w)
 {
   vector<Case> Cases= voting_read( r );
-  
+
   vector<int> results;
 
   for ( int i = 0; i < num_cases; ++i)

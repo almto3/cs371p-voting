@@ -26,7 +26,7 @@ struct Case {
 	int n; 												//number of candidates
   int b;                        //number of ballots
 	vector<string> names; 						//names of candidates
-	vector<int> ballots [MAX_BALLOTS]; 		//the ballots
+	vector<vector<int>> ballots; 		//the ballots
 };
 
 // ------------
