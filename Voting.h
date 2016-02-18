@@ -1,17 +1,13 @@
 #ifndef Voting_h
 #define Voting_h
 
-const int MAX_CANDIDATES = 20;
-const int MAX_BALLOTS = 1000;
-
-
 // --------
 // includes
 // --------
 
 #include <iostream> // istream, ostream
 #include <string>   // string
-#include <vector>
+#include <vector>   // vector
 
 using namespace std;
 
@@ -19,14 +15,17 @@ using namespace std;
 // struct Case
 // ------------
 /**
- * add description
+ * @param n the number of candidates
+ * @param b the number of ballots
+ * @param names the names of candidates
+ * @param ballots the ballots of candidates
  */
 
 struct Case {
-	int n; 												//number of candidates
-  int b;                        //number of ballots
-	vector<string> names; 						//names of candidates
-	vector<vector<int>> ballots; 		//the ballots
+	int n;
+  int b;
+	vector<string> names;
+	vector< vector<int> > ballots;
 };
 
 // ------------
@@ -35,32 +34,18 @@ struct Case {
 /**
  * read a std input
  * @param r an istream
- * @returns a pointer array of struct Case
+ * @returns a vector of struct Case
  */
-
 vector<Case> voting_read (istream& r);		
 
 // ------------
 // voting_eval
 // ------------
 /**
- * @c is is the instance of the struct Case
+ * @param c the instance of the struct Case
  * @returns the winner id in the array of candidates
  */
 vector<int> voting_eval (Case& c);
-
-// -------------
-// voting_print
-// -------------
-/**
- * @c is is the instance of the struct Case
- * whatevez
- */
-void voting_print (Case& c);
-
-// -------------
-// voting_solve
-// -------------
 
 /**
  * @param r an istream

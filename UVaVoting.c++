@@ -9,9 +9,24 @@
 #include <cstring>  // stoi
 #include <vector>   // string
 
-#include "Voting.h"
-
 using namespace std;
+
+// ------------
+// struct Case
+// ------------
+/**
+ * @param n the number of candidates
+ * @param b the number of ballots
+ * @param names the names of candidates
+ * @param ballots the ballots of candidates
+ */
+
+struct Case {
+  int n;
+  int b;
+  vector<string> names;
+  vector< vector<int> > ballots;
+};
 
 int num_cases;
 
@@ -188,3 +203,12 @@ void voting_solve (istream& r, ostream& w)
   }
 
 }
+
+// ----
+// main
+// ----
+
+int main () {
+    using namespace std;
+    voting_solve(cin, cout);
+    return 0;} 
