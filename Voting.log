@@ -1,0 +1,119 @@
+commit ab290f56fbf32874f76cbdc5215dd4a3a6581006
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Thu Feb 18 16:55:44 2016 -0600
+
+    Updated TestVoting.out
+
+commit d83fa64fdc8c8945d997edb3e7bfc9d97ea1f78d
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Thu Feb 18 12:34:48 2016 -0600
+
+    Added comments and assertions. Fixes #4, fixes #7, fixes #8, fixes #9, fixes #14
+
+commit 4b8d28c8921181136de1844e55045b8cc8311b11
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Tue Feb 16 22:00:32 2016 -0600
+
+    Optimization added. Fixes #10, fixes #11, fixes#12
+
+commit 8320e84858c16ddc27466a05fccaf20add6cf8a8
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Tue Feb 16 18:41:22 2016 -0600
+
+    Added TestVoting.out
+
+commit e36a9c3457bbe3cd5610a21211ecf40c2e679c8a
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Tue Feb 16 18:39:04 2016 -0600
+
+    Changed .travis
+
+commit 6086c53b1b8c5b5970870d6b8cdfff8de3d38a3c
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Tue Feb 16 18:31:00 2016 -0600
+
+    Working unit tests. Fixes #6
+
+commit 5834363b69e4e6f3e2e5ceb63b42e68c78444c61
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Tue Feb 16 17:24:08 2016 -0600
+
+    Working simplest solution. Fixes #3, fixes #5
+
+commit 1e62c9670b56d4d4a3ca1c9b6f7368b4777bd534
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Mon Feb 15 17:29:41 2016 -0600
+
+    Added Vectors.
+
+commit fbc3cd40764e1fd7d750050aa445d38b533140d6
+Author: saleh alghusson <almto3@hotmail.com>
+Date:   Sat Feb 13 16:19:00 2016 -0600
+
+    names
+
+commit 56efc9f4e736104551d7aa2a4c5844a965a0966e
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Sat Feb 13 15:55:48 2016 -0600
+
+    Eval works, Program works
+
+commit 7ab0e3c6c95a851c5ef625839b70f92b40590a38
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Fri Feb 12 20:45:41 2016 -0600
+
+    Arrays working correctly. Printing correctly
+
+commit d4169654dc9eab984f716dba8daa4a99f4b62923
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Fri Feb 12 18:58:25 2016 -0600
+
+    Added RunVoting.c++
+
+commit 4fa93adec72b3c513139e187dd300cab599903e5
+Author: saleh alghusson <almto3@hotmail.com>
+Date:   Fri Feb 12 18:43:08 2016 -0600
+
+    fixed header file
+
+commit 981a83965f8f6ddd3356daeeb176fd8c10c78785
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Thu Feb 11 21:54:48 2016 -0600
+
+    Initial commit of Voting.c++
+
+commit 4427736c241e39342edd34f163a1c42b2e2e0e2f
+Author: almto3 <almto3@hotmail.com>
+Date:   Thu Feb 11 21:11:57 2016 -0600
+
+    addes voting.h
+
+commit b55903ef53ff4d7de95a9312bac3c0f77d915b4c
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Thu Feb 11 19:38:31 2016 -0600
+
+    Initial unit tests
+
+commit 8072ef0f77c93472f5d81f19a8988db19ac51fc2
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Wed Feb 10 12:48:46 2016 -0600
+
+    Added makefile
+
+commit 84687dad2ea9ba73aa08f0eefd69e153e1c872fb
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Wed Feb 10 12:32:15 2016 -0600
+
+    Changed block comment in .travis
+
+commit f454af58cd65a0bfbade9c4e4e1d9617f133defb
+Author: Nathan Bain <nbain@cs.utexas.edu>
+Date:   Wed Feb 10 12:22:55 2016 -0600
+
+    Added .travis file
+
+commit c9c0ebeb14a32cf75033525462582244b2861ef7
+Author: almto3 <almto3@hotmail.com>
+Date:   Wed Feb 10 12:06:36 2016 -0600
+
+    Initial commit
